@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"><link rel="icon" href="https://jscdn.com.cn/highcharts/images/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* css 代码  */
+        </style>
+        <script src="https://code.highcharts.com.cn/jquery/jquery-1.8.3.min.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/data.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/series-label.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts/modules/oldie.js"></script>
+        <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    </head>
+    <body>
+        <div id="container" style="min-width:400px;height:400px"></div>
+        <div class="message"></div>
+        <script>
+            var categories = ['武侯区','锦江区','青羊区','金牛区','成华区','新都区','温江区','双流区','龙泉驿区','青白江区'];
+var chart = Highcharts.chart('container', {
+	chart: {
+		type: 'bar'
+	},
+	title: {
+		text: '成都各行政区居住人口和工作人口密度'
+	},
+	subtitle: {
+		useHTML: false,
+		text: '人口密度=行政区总人口/总面积'
+	},
+	xAxis: [{
+		categories: categories,
+		reversed: false,
+		labels: {
+			step: 1
+		}
+	}, { 
+		// 显示在右侧的镜像 xAxis （通过 linkedTo 与第一个 xAxis 关联）
+		opposite: true, 
+		reversed: false,
+		categories: categories,
+		linkedTo: 0,
+		labels: {
+			step: 1
+		}
+	}],
+	yAxis: {
+		title: {
+			text: null
+		},
+		labels: {
+			formatter: function () {
+				return (Math.abs(this.value) / 1000) + 'K';
+			}
+		},
+		min: -25000,
+		max: 20000
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+				'人口: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+		}
+	},
+	series: [{
+		name: '居住人口密度',
+		data: [-22000,-20100,-20050,-16800,-16000,-4000,-3800,-3200,-3100,-1200]
+	}, {
+		name: '工作人口密度',
+		data: [15500,12000,12000,8000,6000,2200,2200,1200,1200,600]
+	}]
+});
+ 
+        </script>
+    </body>
+</html>
