@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+   <div style="height: 50%;">
+       <div id=tab-chengdu style="height:100%;width:50%;float:left;"></div>
+       <div id=tab-chongqing style="height:100%;width:50%;float:left;"></div>
+       <!--div id=tab-xian style="height:100%;width:25%;float:left;"></div>
+       <div id=tab-wuhan style="height:100%;width:25%;float:left;"></div-->
+   </div>
+   <div style="height: 50%;">
+       <!--div id=tab-chengdu style="height:100%;width:25%;float:left;"></div>
+       <div id=tab-chongqing style="height:100%;width:25%;float:left;"></div-->
+       <div id=tab-xian style="height:100%;width:50%;float:left;"></div>
+       <div id=tab-wuhan style="height:100%;width:50%;float:left;"></div>
+   </div>
+       <!--div id="container" style="height: 50%; width: 25%"></div-->
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <!--script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script-->
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("tab-chengdu");
+var myChart = echarts.init(dom);
+var app = {};
+//option = null;
+option = {
+    title: {
+        text: 'Chengdu',
+        x: 'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'year',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        name: 'unit price (RMB/m2)',
+        type: 'value',
+        max: 17500
+    },
+    series: [{
+        data: [7705, 8784, 8345, 8591, 8408, 8246, 8392, 9839, 13114, 13526],
+        type: 'line',
+        lineStyle: { color: '#ff7777'},
+        areaStyle: { color: '#ff7777'}
+    }]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+
+var dom2 = document.getElementById("tab-chongqing");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+//option = null;
+option2 = {
+    title: {
+        text: 'Chongqing',
+        x: 'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'year',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        name: 'unit price (RMB/m2)',
+        type: 'value',
+        max: 17500
+    },
+    series: [{
+        data: [5262, 6839, 6452, 6671, 6950, 6471, 6961, 9133, 12075, 11941],
+        type: 'line',
+        lineStyle: { color: '#ff3377'},
+        areaStyle: { color: '#ff3377'}
+    }]
+};
+;
+if (option2 && typeof option2 === "object") {
+    myChart2.setOption(option2, true);
+}
+
+var dom3 = document.getElementById("tab-xian");
+var myChart3 = echarts.init(dom3);
+var app3 = {};
+//option = null;
+option3 = {
+    title: {
+        text: "Xi'an",
+        x: 'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'year',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        name: 'unit price (RMB/m2)',
+        type: 'value',
+        max: 17500
+    },
+    series: [{
+        data: [5816, 6900, 6921, 6890, 6966, 6757, 6361, 7626, 11981, 12539],
+        type: 'line',
+        lineStyle: { color: '#ff7733'},
+        areaStyle: { color: '#ff7733'}
+    }]
+};
+;
+if (option3 && typeof option3 === "object") {
+    myChart3.setOption(option3, true);
+}
+
+var dom4 = document.getElementById("tab-wuhan");
+var myChart4 = echarts.init(dom4);
+var app4 = {};
+//option = null;
+option4 = {
+    title: {
+        text: 'Wuhan',
+        x: 'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'year',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        name: 'unit price (RMB/m2)',
+        type: 'value',
+        max: 17500
+    },
+    series: [{
+        data: [6307, 7760, 7766, 8298, 9211, 9443, 11101, 15492, 16589, 17232],
+        type: 'line',
+        lineStyle: { color: '#7777ff'},
+        areaStyle: { color: '#7777ff'}
+    }]
+};
+;
+if (option4 && typeof option4 === "object") {
+    myChart4.setOption(option4, true);
+}
+
+       </script>
+   </body>
+</html>

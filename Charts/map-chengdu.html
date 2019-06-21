@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div style="height: 90%;">
+            <div id="container" style="height: 100%; width: 50%; float:left;"></div>
+            <div id="container2" style="height: 100%; width: 50%; float:left;"></div>
+       </div>     
+       <div>
+            <div>year</div>
+            <input min="2010" max="2019" value="2019" id="range" oninput="rangeChange()" type="range">
+            <input id="show" type="number" value="2019" readonly="readonly">
+       </div>
+       <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <!--script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script-->
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+dataset2 = {
+    '成华区': [7689,8993,8518,8733,8463,8323,8675,10510,15189,15917],
+    '金牛区': [7522,8663,8213,8468,8338,8121,8554,9991,14570,15047],
+    '锦江区': [8237,9426,9044,9426,9392,9067,9801,12460,17009,20879],
+    '龙泉驿区': [4069,5722,5852,6036,6185,5744,5655,6246,10769,11013],
+    '青白江区': [3000,3000,3000,3000,3000,3000,3205,4016,7403,7338],
+    '青羊区': [8256,9554,9003,9324,9227,9131,9811,12729,17064,19681],
+    '温江区': [4152,4959,4645,4976,5038,4966,5032,5641,9212,11107],
+    '武侯区': [7955,9212,8907,9075,9000,8956,9165,10976,15589,17403],
+    '新都区': [4455,6059,4750,4912,5305,5221,5445,5867,8960,10735],
+    '双流县': [5125,6032,5963,6299,6561,6502,6233,8500,10378,12479],
+    '郫县': [4437,5496,5002,5145,5274,5058,5193,5508,8353,10039],    
+};
+
+namelist = {
+    '成华区': 'Chenghua District',
+    '金牛区': 'Jinniu District',
+    '锦江区': 'Jinjiang District',
+    '龙泉驿区': 'Longquanyi District',
+    '青白江区': 'Qingbaijiang District',
+    '青羊区': 'Qingyang District',
+    '温江区': 'Wenjiang District',
+    '武侯区': 'Wuhou District',
+    '新都区': 'Xindu District',
+    '双流县': 'Shuangliu County',
+    '郫县': 'Pi County',
+}
+
+var dom2 = document.getElementById("container2");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+option2 = null;
+option2 = {
+    title: {
+        text: namelist['成华区'],
+        x: 'center'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'year',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        name: 'unit price (RMB/m2)',
+        type: 'value',
+        max: 21000
+    },
+    series: [{
+        data: dataset2['成华区'],
+        type: 'line',
+        lineStyle: { color: '#3333cc'},
+        areaStyle: { color: '#3333cc'}
+    }]
+};
+if (option2 && typeof option2 === "object") {
+    myChart2.setOption(option2, true);
+}
+
+dataset = {
+    '2010': [
+                {name: '成华区', value: 7689},
+                {name: '金牛区', value: 7522},
+                {name: '锦江区', value: 8237},
+                {name: '龙泉驿区', value: 4069},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 8256},
+                {name: '温江区', value: 4152},
+                {name: '武侯区', value: 7955},
+                {name: '新都区', value: 4455},
+                {name: '双流县', value: 5125},
+                {name: '郫县', value: 4437},
+            ],
+    '2011': [
+                {name: '成华区', value: 8993},
+                {name: '金牛区', value: 8663},
+                {name: '锦江区', value: 9426},
+                {name: '龙泉驿区', value: 5852},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 9003},
+                {name: '温江区', value: 4645},
+                {name: '武侯区', value: 8907},
+                {name: '新都区', value: 4750},
+                {name: '双流县', value: 5963},
+                {name: '郫县', value: 5002},
+            ],
+    '2012': [
+                {name: '成华区', value: 8518},
+                {name: '金牛区', value: 8468},
+                {name: '锦江区', value: 9044},
+                {name: '龙泉驿区', value: 5852},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 9003},
+                {name: '温江区', value: 4645},
+                {name: '武侯区', value: 8907},
+                {name: '新都区', value: 4750},
+                {name: '双流县', value: 5963},
+                {name: '郫县', value: 5002},
+            ],
+    '2013': [
+                {name: '成华区', value: 8733},
+                {name: '金牛区', value: 8468},
+                {name: '锦江区', value: 9426},
+                {name: '龙泉驿区', value: 6036},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 9324},
+                {name: '温江区', value: 4976},
+                {name: '武侯区', value: 9075},
+                {name: '新都区', value: 4912},
+                {name: '双流县', value: 6299},
+                {name: '郫县', value: 5145},
+            ],
+    '2014': [
+                {name: '成华区', value: 8463},
+                {name: '金牛区', value: 8338},
+                {name: '锦江区', value: 9392},
+                {name: '龙泉驿区', value: 6185},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 9227},
+                {name: '温江区', value: 5038},
+                {name: '武侯区', value: 9000},
+                {name: '新都区', value: 5305},
+                {name: '双流县', value: 6561},
+                {name: '郫县', value: 5274},
+            ],
+    '2015': [
+                {name: '成华区', value: 8323},
+                {name: '金牛区', value: 8121},
+                {name: '锦江区', value: 9067},
+                {name: '龙泉驿区', value: 5744},
+                {name: '青白江区', value: 3000},
+                {name: '青羊区', value: 9131},
+                {name: '温江区', value: 4966},
+                {name: '武侯区', value: 8956},
+                {name: '新都区', value: 5221},
+                {name: '双流县', value: 6502},
+                {name: '郫县', value: 5058},
+            ],
+    '2016': [
+                {name: '成华区', value: 8675},
+                {name: '金牛区', value: 8554},
+                {name: '锦江区', value: 9801},
+                {name: '龙泉驿区', value: 5655},
+                {name: '青白江区', value: 3205},
+                {name: '青羊区', value: 9811},
+                {name: '温江区', value: 5032},
+                {name: '武侯区', value: 9165},
+                {name: '新都区', value: 5445},
+                {name: '双流县', value: 6233},
+                {name: '郫县', value: 5193},
+            ],
+    '2017': [
+                {name: '成华区', value: 10510},
+                {name: '金牛区', value: 9991},
+                {name: '锦江区', value: 12460},
+                {name: '龙泉驿区', value: 6246},
+                {name: '青白江区', value: 4016},
+                {name: '青羊区', value: 12729},
+                {name: '温江区', value: 5641},
+                {name: '武侯区', value: 10976},
+                {name: '新都区', value: 5867},
+                {name: '双流县', value: 8500},
+                {name: '郫县', value: 5508},
+            ],
+    '2018': [
+                {name: '成华区', value: 15189},
+                {name: '金牛区', value: 14570},
+                {name: '锦江区', value: 17009},
+                {name: '龙泉驿区', value: 10769},
+                {name: '青白江区', value: 7403},
+                {name: '青羊区', value: 17064},
+                {name: '温江区', value: 9212},
+                {name: '武侯区', value: 15589},
+                {name: '新都区', value: 8960},
+                {name: '双流县', value: 10378},
+                {name: '郫县', value: 8353},
+            ],
+    '2019': [
+                {name: '成华区', value: 15917},
+                {name: '金牛区', value: 15047},
+                {name: '锦江区', value: 20879},
+                {name: '龙泉驿区', value: 11013},
+                {name: '青白江区', value: 7338},
+                {name: '青羊区', value: 19681},
+                {name: '温江区', value: 11107},
+                {name: '武侯区', value: 17403},
+                {name: '新都区', value: 10735},
+                {name: '双流县', value: 12479},
+                {name: '郫县', value: 10039},
+            ],
+};
+myChart.showLoading();
+
+$.getJSON('https://github.com//feiyuxiaoThu//Exploration-of-Chengdu-Landscope//blob//master//json//Chengdu.json', function (geoJson) {
+
+    myChart.hideLoading();
+
+    echarts.registerMap('HK', geoJson);
+
+    myChart.setOption(option = {
+        title: {
+            text: 'House price in different districts of Chengdu（2010-2019）',
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{c} (RMB / m2)'
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            /*feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }*/
+        },
+        visualMap: {
+            min: 3000,
+            max: 21000,
+            text:['High','Low'],
+            realtime: false,
+            calculable: true,
+            inRange: {
+                //color: ['lightskyblue','yellow', 'orangered']
+                color: ['#ccccff','#7777cc', '#000077']
+            }
+        },
+        series: [
+            {
+                name: 'House price in different districts of Chengdu (2010-2019)',
+                type: 'map',
+                mapType: 'HK', // 自定义扩展图表类型
+                itemStyle:{
+                    normal:{label:{show:false}},
+                    emphasis:{label:{show:true}}
+                },
+                data: dataset['2019']/*[
+                    {name: '成华区', value: 15917},
+                    {name: '金牛区', value: 15047},
+                    {name: '锦江区', value: 20879},
+                    {name: '龙泉驿区', value: 11013},
+                    {name: '青白江区', value: 7338},
+                    {name: '青羊区', value: 19681},
+                    {name: '温江区', value: 11107},
+                    {name: '武侯区', value: 17403},
+                    {name: '新都区', value: 10735},
+                    {name: '双流县', value: 12479},
+                    {name: '郫县', value: 10039},
+                ],*/
+            }
+        ]
+    });
+});;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+myChart.on('click', function(params){
+    //alert(1);
+    //console.log(params.data['name']);//此处写点击事件内容
+    name = params.data['name'];
+    option2 = {
+        title: {
+            text: namelist[name],
+            x: 'center'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        xAxis: {
+            type: 'category',
+            name: 'year',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        },
+        yAxis: {
+            name: 'unit price (RMB/m2)',
+            type: 'value',
+            max: 21000
+        },
+        series: [{
+            data: dataset2[name],
+            type: 'line',
+            lineStyle: { color: '#3333cc'},
+            areaStyle: { color: '#3333cc'}
+        }]
+    };
+     myChart2.setOption(option2, true);
+});//点击事件，此事件还可以用到柱状图等其他地图
+    function rangeChange(){ 
+        var num=document.getElementById("range"); 
+        var location=document.getElementById("show"); 
+        location.value=num.value;
+        option = {
+        title: {
+            text: 'House price in different districts of Chengdu (2010-2019)',
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{c} (RMB / m2)'
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            /*feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }*/
+        },
+        visualMap: {
+            min: 3000,
+            max: 21000,
+            text:['High','Low'],
+            realtime: false,
+            calculable: true,
+            inRange: {
+                //color: ['lightskyblue','yellow', 'orangered']
+                color: ['#ccccff','#7777cc', '#000077']
+            }
+        },
+        series: [
+            {
+                name: 'House price in different districts of Chengdu (2010-2019)',
+                type: 'map',
+                mapType: 'HK', // 自定义扩展图表类型
+                itemStyle:{
+                    normal:{label:{show:false}},
+                    emphasis:{label:{show:true}}
+                },
+                data: dataset[String(num.value)]/*[
+                    {name: '成华区', value: 15917},
+                    {name: '金牛区', value: 15047},
+                    {name: '锦江区', value: 20879},
+                    {name: '龙泉驿区', value: 11013},
+                    {name: '青白江区', value: 7338},
+                    {name: '青羊区', value: 19681},
+                    {name: '温江区', value: 11107},
+                    {name: '武侯区', value: 17403},
+                    {name: '新都区', value: 10735},
+                    {name: '双流县', value: 12479},
+                    {name: '郫县', value: 10039},
+                ],*/
+            }
+        ]
+        }; 
+        myChart.setOption(option, true);
+    }
+
+       </script>
+   </body>
+</html>
