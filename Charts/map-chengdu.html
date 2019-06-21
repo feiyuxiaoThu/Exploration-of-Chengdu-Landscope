@@ -4,9 +4,9 @@
        <meta charset="utf-8">
    </head>
    <body style="height: 100%; width:100%; margin: 0">
-       <div style="height: 90%; width:1600px; overflow:scroll">
-            <div id="container" style="height: 100%; width: 800px; float:left;"></div>
-            <div id="container2" style="height: 100%; width: 800px; float:left;"></div>
+       <div style="height: 90%; width:100%">
+            <div id="container" style="height: 100%; float:left;"></div>
+            <div id="container2" style="height: 100%; float:left;"></div>
        </div>     
        <div>
             <div>year</div>
@@ -237,7 +237,7 @@ $.getJSON('../json/Chengdu.json', function (geoJson) {
         },
         tooltip: {
             trigger: 'item',
-            formatter: '10K'
+            formatter: '{c}'
         },
         toolbox: {
             show: true,
@@ -332,7 +332,7 @@ myChart.on('click', function(params){
         },
         tooltip: {
             trigger: 'item',
-            formatter: 'RMB'
+            formatter: '{c}'
         },
         toolbox: {
             show: true,
