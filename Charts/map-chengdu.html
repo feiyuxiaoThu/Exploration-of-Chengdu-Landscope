@@ -76,7 +76,7 @@ option2 = {
         data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
     },
     yAxis: {
-        name: 'unit price (RMB)',
+        name: 'RMB',
         type: 'value',
         max: 21000
     },
@@ -233,11 +233,11 @@ $.getJSON('../json/Chengdu.json', function (geoJson) {
 
     myChart.setOption(option = {
         title: {
-            text: 'House price in different districts of Chengdu（2010-2019）',
+            text: 'District level house price',
         },
         tooltip: {
             trigger: 'item',
-            formatter: '{c} (RMB / m2)'
+            formatter: '10K'
         },
         toolbox: {
             show: true,
@@ -263,7 +263,7 @@ $.getJSON('../json/Chengdu.json', function (geoJson) {
         },
         series: [
             {
-                name: 'House price in different districts of Chengdu (2010-2019)',
+                name: 'District level house price',
                 type: 'map',
                 mapType: 'HK', // 自定义扩展图表类型
                 itemStyle:{
@@ -306,10 +306,10 @@ myChart.on('click', function(params){
             type: 'category',
             name: 'year',
             boundaryGap: false,
-            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+            data: ['10', '11', '12', '13', '14', '15', '16', '17', '18', '19']
         },
         yAxis: {
-            name: 'unit price (RMB/m2)',
+            name: 'RMB',
             type: 'value',
             max: 21000
         },
@@ -328,11 +328,11 @@ myChart.on('click', function(params){
         location.value=num.value;
         option = {
         title: {
-            text: 'House price in different districts of Chengdu (2010-2019)',
+            text: '',
         },
         tooltip: {
             trigger: 'item',
-            formatter: '{c} (RMB / m2)'
+            formatter: 'RMB'
         },
         toolbox: {
             show: true,
@@ -358,7 +358,7 @@ myChart.on('click', function(params){
         },
         series: [
             {
-                name: 'House price in different districts of Chengdu (2010-2019)',
+                name: 'District level house price',
                 type: 'map',
                 mapType: 'HK', // 自定义扩展图表类型
                 itemStyle:{
