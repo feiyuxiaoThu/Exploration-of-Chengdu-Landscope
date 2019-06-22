@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       //<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       //<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       //<script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title: {
+        text: '堆叠区域图'
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data:['交通运输','计算机软件','批发零售','住宿餐饮','金融业','房地产','租赁和商业服务','科学研究','水利环境','居民服务','教育','卫生社保','文化体育娱乐','公共管理']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['2000','2005','2010','2014','2015','2016','2017']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'交通运输',
+            type:'line',
+            stack: '总量',
+            areaStyle: {},
+            data:[712203, 1234810, 2603524, 4366197, 4701375, 5300115, 5874729]
+        },
+        {
+            name:'计算机软件',
+            type:'line',
+            stack: '总量',
+            areaStyle: {},
+            data:[535748, 1012315, 2217779, 3583071, 3957562, 4782859, 6497963]
+        },
+        {
+            name:'批发零售',
+            type:'line',
+            stack: '总量',
+            areaStyle: {},
+            data:[1210087, 2219522, 4939955, 7540389, 7783427, 8430123, 9018595]
+        },
+        {
+            name:'住宿餐饮',
+            type:'line',
+            stack: '总量',
+            areaStyle: {},
+            data:[527235, 1047486, 2075352, 3292494, 3596749, 4038686, 4380167]
+        },
+        {
+            name:'金融业',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[657144, 1210959, 4372812, 10718095, 12542262, 14156027, 16043336]
+        },
+        {
+            name:'房地产',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[515438, 1409487, 3316866, 5785109, 5977068, 7107322, 7409206]
+        },
+        {
+            name:'租赁和商业服务',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[167334, 393417, 1228084, 3701948, 4055493, 4954488, 5966954]
+        },
+        {
+            name:'科学研究',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[316443, 653060, 1508100, 2353275, 2906787, 3143809, 4020034]
+        },
+        {
+            name:'水利环境',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[82831, 134809, 144332, 290431,295361 , 326478, 339452]
+        },
+        {
+            name:'居民服务',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[344324, 584912, 791181, 1210127, 1309439, 1580088, 1781625]
+        },
+        {
+            name:'教育',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[383268, 792489, 1513276, 2688367, 2750015, 2958978, 3245874]
+        },
+        {
+            name:'卫生社保',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[167512, 332693, 834289, 1469232, 1671498, 1902169, 2066291]
+        },
+        {
+            name:'文化体育娱乐',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[175145, 355542, 796590, 1517982, 1737174, 2146284, 2507040]
+        },
+        {
+            name:'公共管理',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[388291, 765013, 1511251, 2730359, 3060491, 3347187, 3885625]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
