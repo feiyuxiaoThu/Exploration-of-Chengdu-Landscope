@@ -1,0 +1,166 @@
+﻿ <!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js"></script>
+</head>
+<body>
+  <div id="lineChart" style="wide:250px;height:700px">
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      lineChart();
+    });
+function lineChart() {
+      var myChart = echarts.init(document.getElementById('lineChart'));
+
+var option = {
+    title: {
+        text: 'Gross Domestic Product of Tertiary Industry in Chengdu'
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        	 x: 'center', // 'center' | 'left' | {number},
+                 y: 'top', // 'center' | 'bottom' | {number},
+	top:'3%',
+	data:['Transportation','Software','Retail','Accommodation','Finance','Real Estate','Commercial Services','Scientific Research','Environment','Resident Services','Education','Social Security','Entertainment','Public Administration']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '1%',
+        right: '4%',
+        bottom: '2%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            name:'year',
+            boundaryGap : false,
+            data : ['2000','2005','2010','2014','2015','2016','2017']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            name:'million￥'
+        }
+    ],
+    series : [
+        {
+            name:'Transportation',
+            type:'line',
+            stack: '总量',
+            areaStyle:  {normal: {}},
+            data:[7122, 12348, 26035, 43661, 47013, 53001, 58747]
+        },
+        {
+            name:'Software',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[5357, 10123, 22177, 35830, 39575, 47828, 64979]
+        },
+        {
+            name:'Retail',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[12100, 22195, 49399, 75403, 77834, 84301, 90185]
+        },
+        {
+            name:'Accommodation',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[5272, 10474, 20753, 32924, 35967, 40386, 43801]
+        },
+        {
+            name:'Finance',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[6571, 12109, 43728, 107180, 125422, 141560, 160433]
+        },
+        {
+            name:'Real Estate',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[5154, 14094, 33168, 57851, 59770, 71073, 74092]
+        },
+        {
+            name:'Commercial Services',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[1673, 3934, 12280, 37019, 40554, 49544, 59669]
+        },
+        {
+            name:'Scientific Research',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[3164, 6530, 15081, 23532, 29067, 31438, 40200]
+        },
+        {
+            name:'Environment',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[828, 1348, 1443, 2904,2953 , 3264, 3394]
+        },
+        {
+            name:'Resident Services',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[3443, 5849, 7911, 12101, 13094, 15800, 17816]
+        },
+        {
+            name:'Education',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[3832, 7924, 15132, 26883, 27500, 29589, 32458]
+        },
+        {
+            name:'Social Security',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[1675, 3326, 8342, 14692, 16714, 19021, 20662]
+        },
+        {
+            name:'Entertainment',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[1751, 3555, 7965, 15179, 17371, 21462, 25070]
+        },
+        {
+            name:'Public Administration',
+            type:'line',
+            stack: '总量',
+            areaStyle: {normal: {}},
+            data:[3882, 7650, 15112, 27303, 30604, 33471, 38856]
+        }
+    ]
+};
+ myChart.setOption(option);
+    }
+  </script>
+</body>
+</html>
