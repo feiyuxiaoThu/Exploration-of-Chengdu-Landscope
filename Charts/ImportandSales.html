@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:400px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'https://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                var option=
+{
+	color: ['#5793f3','#d14a61'],    //颜色
+	
+	tooltip:{
+		trigger:'axis',
+		axisPointer:{type:'cross'}
+	},
+	grid:{
+		right:'20%'
+	},
+	toolbox:{
+		feature:{
+			dataView:{show:true,readOnly:false},
+			restore:{show:true},
+			saveAsImage:{show:true}
+		}
+	},
+	legend:{
+		data:['Total retail sales of social goods','Total import and export of goods']
+	},
+	xAxis:[
+		{
+			type:'category',
+			axisTick:{
+				alignWithLabel:true
+			},
+			data:['2009','2010','2011','2012','2013','2014','2015','2016','2017']
+		}
+	],
+	yAxis:[{
+		type:'value',
+		name:'retail sales（￥billion）',
+		min: 0,
+		max: 800,
+		position:'right',
+		axisLine:{
+			lineStyle:{
+				color:'#5793f3'
+			}
+		},
+		axisLabel:{
+			formatter:'{value}'
+		}
+		},
+		{type:'value',
+		name:'import and export（$million）',
+		min: 0,
+		max: 60000,
+		position:'right',
+		//offset:80,
+		axisLine:{
+			lineStyle:{
+				color:'#d14a61'
+			}
+		},
+		axisLabel:{
+			formatter:'{value}'
+		}
+		}
+		
+	],
+	series:[
+	{
+		name:'Total retail sales of social goods',
+		type:'line',
+		data:[
+		194.99,
+		241.76,
+		286.13,
+		331.77,
+		375.29,
+		446.89,
+		496.92,
+                                574.24,
+                                640.35
+		]
+                                
+	},
+	{
+		name:'Total import and export of goods',
+		type:'line',
+		yAxisIndex:1,
+		data:[
+		17863,
+		22449,
+		37906,
+		47539,
+		50585,
+		55844,
+		39531,
+                                41008,
+                                58315
+		]
+                                
+	},
+	]
+}
+   // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+    </script>
+</body> 
