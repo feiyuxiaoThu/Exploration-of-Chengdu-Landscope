@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>ECharts</title>
+</head>
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main1" style="height:400px","width:400px"></div>
+  <div id="main2" style="height:400px","width:400px"></div>
+
+  <!-- ECharts单文件引入 -->
+  <script src="https://echarts.baidu.com/build/dist/echarts.js"></script>
+  <script type="text/javascript">
+    // 路径配置
+    require.config({
+      paths: {
+        echarts: 'http://echarts.baidu.com/build/dist'
+      }
+    });
+      
+    // 使用
+    require(
+      [
+        'echarts',
+        'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+        'echarts/chart/line'
+      ],
+      function (ec) {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart1 = ec.init(document.getElementById('main1'));
+        var myChart2 = ec.init(document.getElementById('main2'));
+     
+  
+        myChart1.setTheme("macarons");
+        myChart2.setTheme("macarons");
+       
+          
+        var option1 = {
+        title : {
+        show:true,//默认为true，可以省略
+        text: 'Finance',
+        //subtext: '纯属虚构',
+        x:'left',
+         textStyle:{
+            color :'pink',}
+        }, 
+        label: {
+        
+		show: true, //开启显示
+        
+		position: 'bottom', //在上方显示
+        
+		textStyle: { //数值样式
+            
+		color: 'aqua',
+            
+		fontSize: 2000
+          }
+    },
+    
+        xAxis: {
+        type: 'category',
+        
+		boundaryGap: false,
+        
+		data: ['2000', '2005', '2010', '2014', '2015', '2016', '2017'],
+        
+		show:false
+    },
+    
+        yAxis: {
+        type: 'value',
+        show:false
+    },
+    
+        
+tooltip: {
+                        trigger: 'item',
+ 
+position: [850, 200],       
+ textStyle : {
+            color: 'yellow',
+            decoration: 'none',
+            fontFamily: 'Verdana, sans-serif',
+            fontSize: 50,
+            fontStyle: 'italic',
+            fontWeight: 'bold'
+        },
+      
+		 formatter: function (params) {
+                            
+		if (params.componentType !== 'markPoint') {
+                                
+		return params.name+"       "+params.data+"%";
+                            } 
+		else {
+                                return params;
+                            }
+                        }},
+       
+series:[{
+
+    	smooth:true,
+  
+fontsize:2000,      
+		data: [5.7, 5.1, 7.9, 10.7, 11.6, 11.6, 11.6],
+       
+		 type: 'line',
+  
+ itemStyle : {
+								normal : {
+									lineStyle:{
+										color:'pink' 
+									}
+								}
+							},
+      //areaStyle: {}
+    }],
+    
+		grid:{
+       
+        top: '15%',   // 与容器顶部的距离
+        bottom: '55%', // 与容器底部的距离
+ borderWidth:0     },}
+  
+      var option2 = {
+title : {
+        show:true,//默认为true，可以省略
+        text: 'Real Estate',
+        //subtext: '纯属虚构',
+        x:'left',
+ textStyle:{
+            color :'green',}
+        }, 
+          label: {
+        
+		show: true, //开启显示
+        
+		position: 'bottom', //在上方显示
+        
+		textStyle: { //数值样式
+            
+		color: 'aqua',
+            
+		fontSize: 100
+          }
+    },
+    
+        xAxis: {
+        type: 'category',
+        
+		boundaryGap: false,
+        
+		data: ['2000', '2005', '2010', '2014', '2015', '2016', '2017'],
+        
+		show:false
+    },
+    
+        yAxis: {
+        type: 'value',
+    axisLabel: {
+            show: true,
+            interval: 'auto',
+            formatter: '{d}%'
+        },    show:false
+    },
+    
+        
+tooltip: {
+                        trigger: 'item',
+
+position: [850, 200],    
+ textStyle : {
+            color: 'yellow',
+            decoration: 'none',
+            fontFamily: 'Verdana, sans-serif',
+            fontSize: 50,
+            fontStyle: 'italic',
+            fontWeight: 'bold'
+        },                 
+		 formatter: function (params) {
+                            
+		if (params.componentType !== 'markPoint') {
+                                
+		return params.name+"       "+params.data+"%";
+                            } 
+		else {
+                                return params;
+                            }
+                        }},
+       
+series:[{
+
+    	smooth:true,
+        
+		data: [4.5, 5.9, 6.0, 5.8, 5.5, 5.8, 5.3],
+       
+		 type: 'line',
+      
+ itemStyle : {
+								normal : {
+									lineStyle:{
+										color:'green' 
+									}
+								}
+							},
+      //areaStyle: {}
+    }],
+    
+       
+		grid:{
+       
+        top: '15%',   // 与容器顶部的距离
+        bottom: '55%', // 与容器底部的距离
+ borderWidth:0     },}
+  
+     
+  
+      // 为echarts对象加载数据
+      myChart1.setOption(option1);
+      myChart2.setOption(option2);
+   
+      //联动配置
+      myChart1.connect([myChart2, myChart3,myChart4]);
+      myChart2.connect([myChart1, myChart3,myChart4]);
+  
+      }
+    );
+  </script>
+</body>
