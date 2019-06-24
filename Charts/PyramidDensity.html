@@ -18,17 +18,17 @@
         <div id="container" style="min-width:400px;height:400px"></div>
         <div class="message"></div>
         <script>
-            var categories = ['武侯区','锦江区','青羊区','金牛区','成华区','新都区','温江区','双流区','龙泉驿区','青白江区'];
+            var categories = ['Wuhou','Jingjiang','Qingyang','Jinniu','Chenhua','Xindu','Wenjiang','Shuangliu','Longquanyi','Qingbaijiang'];
 var chart = Highcharts.chart('container', {
 	chart: {
 		type: 'bar'
 	},
 	title: {
-		text: '成都各行政区居住人口和工作人口密度'
+		text: 'Living and working density of Chengdu Districts'
 	},
 	subtitle: {
 		useHTML: false,
-		text: '人口密度=行政区总人口/总面积'
+		text: 'Density=District population/Total area'
 	},
 	xAxis: [{
 		categories: categories,
@@ -70,10 +70,10 @@ var chart = Highcharts.chart('container', {
 		}
 	},
 	series: [{
-		name: '居住人口密度',
+		name: 'Living density',
 		data: [-22000,-20100,-20050,-16800,-16000,-4000,-3800,-3200,-3100,-1200]
 	}, {
-		name: '工作人口密度',
+		name: 'Working density',
 		data: [15500,12000,12000,8000,6000,2200,2200,1200,1200,600]
 	}]
 });
